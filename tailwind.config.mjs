@@ -51,6 +51,7 @@ module.exports = {
 			},
 			fontFamily: {
 
+				"lato": [ "Lato", "sans-serif" ]
 
 			}
 
