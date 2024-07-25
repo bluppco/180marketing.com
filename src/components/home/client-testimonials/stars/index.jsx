@@ -6,8 +6,8 @@ const stars = () => {
             stars.push( 
                     <img 
                         alt="star_icon" 
-                        class="size-4" 
-                        src="/icon/star-red.svg"
+                        class="size-5" 
+                        src="/icon/star-yellow.svg"
                     />
 
             );
