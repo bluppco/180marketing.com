@@ -1,0 +1,104 @@
+---
+
+// IMPORT ASTRO LAYOUTS
+import Container from "@/layouts/container-custom/index.astro"
+
+// IMPORT ASTRO ATOMS
+import Link from "@/atoms/links/index.astro"
+import PictureContain from "@/atoms/picture/internal/contain/index.astro"
+
+// GET ASTRO PROPS
+const {
+
+    header_data,
+
+} = Astro.props
+
+// LOGO
+const logo = {
+
+    link: "/",
+    source: "/logo/180-marketing.png",
+
+}
+
+---
+
+<header class="lg:hidden bg-green-light">
+    <Container>
+        <nav class="flex items-center justify-between">
+            <Link href={ logo.link }>
+                <div class="h-14 aspect-[16/5]">
+                    <PictureContain
+                        alternative_text=""
+                        source={ logo.source }
+                    />
+                </div>
+            </Link>
+            <div class="size-8 cursor-pointer" id="burger-menu">
+                <PictureContain
+                    alternative_text=""
+                    source="/icons/burger-menu.svg"
+                />
+            </div>
+        </nav>
+        <ul id="mobile-nav" class="flex flex-col items-center justify-center gap-4 absolute left-0 w-full max-h-0 bg-green-light z-50 transition-all duration-700 overflow-hidden">
+            {
+
+                header_data.map( ( item, index ) => {
+
+                    const isLastItem = index === header_data.length - 1
+
+                    return (
+
+                        <li class="text-lg text-white font-semibold font-lato">
+                            <Link href={ item.data.link }>
+                                <div class={ isLastItem ? "bg-slate-700 hover:bg-slate-600 rounded-lg duration-300 px-4 py-2" : "hover:bg-green-dark rounded-lg duration-300 px-4 py-2" }>
+                                    <span>{ item.data.title }</span>
+                                </div>
+                            </Link>
+                        </li>
+
+                    )
+
+                })
+
+            }
+        </ul>
+    </Container>
+</header>
+
+<script>
+    const menu = document.getElementById('burger-menu')
+    const mobileNav = document.getElementById('mobile-nav')
+
+    // TOGGLE MOBILE NAVBAR BY MANIPULATING HEIGHT
+    menu.addEventListener('click', () => {
+
+        if (mobileNav.classList.contains('max-h-0')) {
+
+            mobileNav.classList.remove('max-h-0')
+            mobileNav.classList.add('max-h-screen')
+            // DELAY FOR ADDING THE PADDING
+            setTimeout( () => {
+                
+                mobileNav.classList.add('py-6')
+
+            }, 10)
+
+        } 
+        else {
+
+            mobileNav.classList.remove('max-h-screen')
+            mobileNav.classList.add('max-h-0') 
+            // DELAY FOR REMOVING THE PADDING
+            setTimeout( () => {
+
+                mobileNav.classList.remove('py-6')
+
+            }, 10)
+
+        }
+
+    })
+</script>
