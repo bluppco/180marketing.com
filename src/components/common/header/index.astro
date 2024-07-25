@@ -1,13 +1,87 @@
 ---
 
+// IMPORT ASTRO COLLECTION
+import { getCollection } from "astro:content"
+
+// IMPORT HEADER COLLECTION
+let header_data = await getCollection("header")
+header_data = header_data.filter(item => item.data.live).sort((a, b) => a.data.order - b.data.order)
+
 // IMPORT ASTRO LAYOUTS
-import Container from "@/layouts/container/index.astro"
+import Container from "@/layouts/container-custom/index.astro"
+
+// IMPORT ASTRO COMPONENTS
+import MobileHeader from "@/components/common/header/mobile/index.astro"
+
+// IMPORT ASTRO ATOMS
+import Link from "@/atoms/links/index.astro"
+import PictureContain from "@/atoms/picture/internal/contain/index.astro"
+
+// LOGO
+const logo = {
+
+    link: "/",
+    source: "/logo/180-marketing.png",
+
+}
 
 ---
-<header class="bg-blue-400 h-12">
-    <Container>
-        <section class="flex items-center h-full">
-            <p class="text-white">I am header</p>
-        </section>
-    </Container>
+
+<header class="fixed w-full">
+    <div class="bg-green-light py-6 relative">
+        <Container>
+            <nav class="hidden lg:flex justify-between">
+                <Link href={ logo.link }>
+                    <div class="h-16 aspect-[16/5]">
+                        <PictureContain
+                            alternative_text=""
+                            source={ logo.source }
+                        />
+                    </div>
+                </Link>
+                <ul class="flex items-center gap-4">
+                    {
+    
+                        header_data.map( ( item, index ) => {
+    
+                            const isLastItem = index === header_data.length - 1
+    
+                            return (
+    
+                                <li class="text-lg text-white font-semibold font-lato">
+                                    <Link href={ item.data.link }>
+                                        <div class={ isLastItem ? "bg-slate-700 hover:bg-slate-600 rounded-lg duration-300 px-4 py-2" : "hover:bg-green-dark rounded-lg duration-300 px-4 py-2" }>
+                                            <span>{ item.data.title }</span>
+                                        </div>
+                                    </Link>
+                                </li>
+    
+                            )
+    
+                        })
+        
+                    }
+                </ul>
+            </nav>
+            <MobileHeader header_data={ header_data }/>
+        </Container>
+    </div>
+    <svg id="wave" class="absolute top-24" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 70" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(162, 207, 79, 1)" offset="0%"></stop><stop stop-color="rgba(162, 207, 79, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,20L80,28.3C160,37,320,53,480,50C640,47,800,23,960,18.3C1120,13,1280,27,1440,41.7C1600,57,1760,73,1920,70C2080,67,2240,43,2400,43.3C2560,43,2720,67,2880,63.3C3040,60,3200,30,3360,20C3520,10,3680,20,3840,31.7C4000,43,4160,57,4320,60C4480,63,4640,57,4800,45C4960,33,5120,17,5280,21.7C5440,27,5600,53,5760,68.3C5920,83,6080,87,6240,75C6400,63,6560,37,6720,33.3C6880,30,7040,50,7200,63.3C7360,77,7520,83,7680,78.3C7840,73,8000,57,8160,46.7C8320,37,8480,33,8640,36.7C8800,40,8960,50,9120,53.3C9280,57,9440,53,9600,45C9760,37,9920,23,10080,18.3C10240,13,10400,17,10560,28.3C10720,40,10880,60,11040,58.3C11200,57,11360,33,11440,21.7L11520,10L11520,100L11440,100C11360,100,11200,100,11040,100C10880,100,10720,100,10560,100C10400,100,10240,100,10080,100C9920,100,9760,100,9600,100C9440,100,9280,100,9120,100C8960,100,8800,100,8640,100C8480,100,8320,100,8160,100C8000,100,7840,100,7680,100C7520,100,7360,100,7200,100C7040,100,6880,100,6720,100C6560,100,6400,100,6240,100C6080,100,5920,100,5760,100C5600,100,5440,100,5280,100C5120,100,4960,100,4800,100C4640,100,4480,100,4320,100C4160,100,4000,100,3840,100C3680,100,3520,100,3360,100C3200,100,3040,100,2880,100C2720,100,2560,100,2400,100C2240,100,2080,100,1920,100C1760,100,1600,100,1440,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path></svg>
 </header>
+
+<script>
+    window.addEventListener('scroll', () => {
+
+        const wave = document.getElementById('wave')
+        if (window.scrollY > 0) {
+
+            wave.classList.add('hidden')
+
+        } else {
+
+            wave.classList.remove('hidden')
+
+        }
+
+    })
+</script>
