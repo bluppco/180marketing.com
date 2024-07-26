@@ -1,23 +1,86 @@
 ---
 
 // IMPORT ASTRO LAYOUTS
-import Container from "@/layouts/container-custom/index.astro"
+import ContainerSmall from "@/layouts/container-small/index.astro"
+
+// IMPORT ASTRO COMPONENTS
+import WhyCard from "@/components/home/why-180-marketing/card/index.astro"
+
+// IMPORT ASTRO ATOMS
+import HeadingTwo from "@/atoms/atoms-shiva/headings/two/four-xl/semibold/index.astro"
+import PictureNone from "@/atoms/picture/internal/object-none/index.astro"
 
 // HARDCODED DATA
 const data = {
 
+    source: "/images/chart-2.png",
     title: "Why 180 Marketing",
 
 }
+const sections = [
+
+    {
+        description: "Traffic is great, but only if it brings in more revenue. Organic search revenue and ROI is our #1 priority.",
+        reverse: false,
+        source: "/images/user-graph.png",
+        title: "High ROI",
+    },
+    {
+        description: "We live and breathe eCommerce SEO. We only work with eCommerce websites and know the nuances better than anyone else.",
+        logos: [
+            { 
+                alternative_text: "shopify", 
+                source: "/icons/shopify.png" 
+            },
+            { 
+                alternative_text: "magento", 
+                source: "/icons/magento.png" 
+            },
+            { 
+                alternative_text: "big-commerce", 
+                source: "/icons/big-commerce.png" 
+            },
+            { 
+                alternative_text: "woo", 
+                source: "/icons/woo.png" 
+            },
+        ],
+        reverse: true,
+        source: "/images/magento-panel.png",
+        title: "eCommerce Specialists",
+    },
+    {
+        description: "Each SEO team member has between 5-10 years of professional experience. You'll only work with industry veterans.",
+        reverse: false,
+        source: "/images/team.png",
+        title: "Experience",
+    },
+
+]
 
 ---
 
-<section class="mt-44 py-14">
-    <Container>
-        <div class="flex flex-col gap-20">
-            <div class="flex flex-col gap-6">
-                <h2 class="text-3xl md:text-4xl font-semibold font-lato">{ data.title }</h2>
+<section class="py-14 relative">
+    <ContainerSmall>
+        <div class="flex flex-col gap-10">
+            <div class="px-8">
+                <HeadingTwo>{ data.title }</HeadingTwo>
             </div>
+            {
+            
+                sections.map( ( section ) => (
+
+                    <WhyCard {...section} />
+
+                ))
+            
+            }
         </div>
-    </Container>
+    </ContainerSmall>
+    <div class="absolute -top-[640px] w-full h-full -z-10">
+        <PictureNone
+            alternative_text=""
+            source={ data.source }
+        />
+    </div>
 </section>
