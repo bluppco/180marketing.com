@@ -1,7 +1,7 @@
 ---
 
 // IMPORT ASTRO LAYOUTS
-import Container from "@/layouts/container-custom/index.astro"
+import ContainerSmall from "@/layouts/container-small/index.astro"
 
 // IMPORT ASTRO ATOMS
 import Link from "@/atoms/links/index.astro"
@@ -25,7 +25,7 @@ const logo = {
 ---
 
 <header class="lg:hidden bg-green-light">
-    <Container>
+    <ContainerSmall>
         <nav class="flex items-center justify-between">
             <Link href={ logo.link }>
                 <div class="h-14 aspect-[16/5]">
@@ -65,7 +65,7 @@ const logo = {
 
             }
         </ul>
-    </Container>
+    </ContainerSmall>
 </header>
 
 <script>
