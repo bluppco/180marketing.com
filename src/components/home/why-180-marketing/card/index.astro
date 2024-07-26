@@ -1,0 +1,58 @@
+---
+
+// IMPORT ASTRO ATOMS
+import HeadingThreeThreeXlSemibold from "@/atoms/atoms-shiva/headings/three/three-xl/semibold/index.astro"
+import ParagraphsTwoXlLight from "@/atoms/atoms-shiva/paragraphs/two-xl/light/index.astro"
+import PictureContain from "@/atoms/picture/internal/contain/index.astro"
+
+// GET ASTRO PROPS
+const { 
+
+    description, 
+    logos, 
+    reverse,
+    source, 
+    title, 
+
+} = Astro.props;
+
+---
+
+<div class={`flex flex-col md:flex-row ${ reverse ? 'md:flex-row-reverse' : '' }`}>
+    <div class="md:w-1/2 flex flex-col gap-2 md:p-20">
+        <HeadingThreeThreeXlSemibold>{ title }</HeadingThreeThreeXlSemibold>
+        <ParagraphsTwoXlLight>{ description }</ParagraphsTwoXlLight>
+        {
+        
+            logos && (
+
+                <div class="flex gap-2">
+                    {
+                    
+                        logos.map( ( item ) => (
+
+                            <div class="w-28 aspect-[4/3]">
+                                <PictureContain 
+                                    alternative_text={ item.alternative_text } 
+                                    source={ item.source } 
+                                />
+                            </div>
+
+                        ))
+                    
+                    }
+                </div>
+
+            )
+        
+        }
+    </div>
+    <div class="md:w-1/2 flex items-center justify-center">
+        <div class="w-[550px] aspect-[5/4]">
+            <PictureContain 
+                alternative_text="" 
+                source={ source } 
+            />
+        </div>
+    </div>
+</div>
