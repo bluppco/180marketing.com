@@ -47,6 +47,9 @@ module.exports = {
 			},
 			colors: {
 
+				"green-light": "#A2CF4F",
+				"green-medium": "#9BCB3B",
+				"green-dark": "#7baa1e",
 
 			},
 			fontFamily: {

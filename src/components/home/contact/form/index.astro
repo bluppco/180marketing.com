@@ -1,0 +1,29 @@
+---
+
+// IMPORT ASTRO COMPONENTS
+import Input from "@/components/home/contact/form/input/index.astro"
+
+// IMPORT ASTRO ATOMS
+import ButtonGreen from "@/atoms/atoms-shiva/buttons/green/index.astro"
+import Link from "@/atoms/links/index.astro"
+
+// HARDCODED DATA
+const data = {
+
+    button_link: "/",
+    button_text: "SUBMIT",
+
+}
+
+---
+
+<form class="flex flex-col gap-4 max-w-[420px]">
+    <Input placeholder="Name" />
+    <Input placeholder="Website" />
+    <Input placeholder="Email Address" />
+    <Input placeholder="Phone Number (Optional)" />
+    <textarea class="p-4 bg-white w-full rounded-md border border-gray-300 placeholder:text-xl placeholder:text-gray-500 resize-none" placeholder="Message" rows="6" ></textarea>
+    <Link href={ data.button_link }>
+        <ButtonGreen>{ data.button_text }</ButtonGreen>
+    </Link>
+</form>
