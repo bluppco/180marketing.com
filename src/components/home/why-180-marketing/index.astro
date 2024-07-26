@@ -70,7 +70,13 @@ const sections = [
             
                 sections.map( ( section ) => (
 
-                    <WhyCard {...section} />
+                    <WhyCard
+                        description={ section.description }
+                        logos={ section.logos }
+                        reverse={ section.reverse }
+                        source={ section.source }
+                        title={ section.title }
+                    />
 
                 ))
             
