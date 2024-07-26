@@ -4,7 +4,7 @@
 import Container from "@/layouts/container/index.astro"
 
 //IMPORT ASTRO ATOMS
-import HeadingThreeFourXlBoldSlate from "@/atoms/atoms-diksha/headings/three/4xl/bold/slate/index.astro"
+import HeadingThreeFourXlBold from "@/atoms/atoms-diksha/headings/three/4xl/bold/index.astro"
 import Picture from "@/atoms/picture/internal/contain/index.astro"
 
 //CONSTANTS
@@ -34,7 +34,7 @@ const images = [
 ---
 
 <Container>
-    <HeadingThreeFourXlBoldSlate>Trusted By</HeadingThreeFourXlBoldSlate>
+    <HeadingThreeFourXlBold>Trusted By</HeadingThreeFourXlBold>
     <div class="flex flex-wrap gap-6 justify-center items-center py-12">
         {
 
@@ -43,7 +43,10 @@ const images = [
                 return (
 
                     <div class="h-10 aspect-[4/1]" >
-                        <Picture source={image.image_source} alternative_text={image.image_text} />
+                        <Picture 
+                            alternative_text={image.image_text} 
+                            source={image.image_source} 
+                        />
                     </div>
 
                 ) 
