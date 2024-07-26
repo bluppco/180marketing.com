@@ -1,11 +1,54 @@
 ---
 
+// IMPORT ASTRO COLLECTION
+import { getCollection } from "astro:content"
+
+// IMPORT FOOTER COLLECTION
+let footer_data = await getCollection("footer")
+footer_data = footer_data.filter( item => item.data.live ).sort( ( a, b ) => a.data.order - b.data.order )
+
 // IMPORT ASTRO LAYOUTS
 import Container from "@/layouts/container/index.astro"
 
+//IMPORT ASTRO ATOMS
+import HeadingSixXlSlate from "@/atoms/atoms-diksha/headings/six/xl/slate/index.astro"
+import Link from "@/atoms/links/index.astro"
+import ParagraphXlLightGreen from "@/atoms/atoms-diksha/paragraphs/xl/light/light-green/index.astro"
+import ParagraphXlLight from "@/atoms/atoms-diksha/paragraphs/xl/light/index.astro"
+import Picture from "@/atoms/picture/internal/contain/index.astro"
+
 ---
-<footer class="bg-black py-20">
-    <Container>
-        <p class="text-white">I am footer</p>
-    </Container>
-</footer>
+
+<Container>
+    <footer class="flex flex-col items-center pt-20 gap-8">
+        <div class="flex gap-10 justify-center">
+            {
+                footer_data.map( ( item ) => {
+
+                    return (
+
+                        <Link 
+                            aria_label={ item.data.title }
+                            href={ item.data.link }
+                        >
+                            <HeadingSixXlSlate>{ item.data.title }</HeadingSixXlSlate>
+                        </Link>
+
+                    )
+
+                })
+            
+            }
+        </div>
+        <div class="w-32 aspect-video">
+            <Picture
+                alternative_text="180 Marketing"
+                source="/logo/180-marketing-2.png"
+            />
+        </div>
+        <div class="border-t-[0.25px] border-slate-400 flex gap-2 w-full justify-center py-6">
+            <ParagraphXlLightGreen>Privacy Policy</ParagraphXlLightGreen>
+            <ParagraphXlLight>| © 2024 180marketing</ParagraphXlLight>
+        </div>
+    </footer>  
+</Container>
