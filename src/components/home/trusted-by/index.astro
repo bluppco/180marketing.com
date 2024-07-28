@@ -1,0 +1,58 @@
+---
+
+//IMPORT ASTRO LAYOUTS
+import Container from "@/layouts/container/index.astro"
+
+//IMPORT ASTRO ATOMS
+import HeadingThreeFourXlBold from "@/atoms/atoms-diksha/headings/three/4xl/bold/index.astro"
+import Picture from "@/atoms/picture/internal/contain/index.astro"
+
+//CONSTANTS
+const images = [
+    {
+        image_source:"/images/trusted-by/polycom.png",
+        image_text:"Polycom"
+    },
+    {
+        image_source:"/images/trusted-by/belkin.png",
+        image_text:"Belkin"
+    },
+    {
+        image_source:"/images/trusted-by/banyan.png",
+        image_text:"Banyan"
+    },
+    {
+        image_source:"/images/trusted-by/david-yurman.png",
+        image_text:"Polycom"
+    },
+    {
+        image_source:"/images/trusted-by/iBuyPower.png",
+        image_text:"Polycom"
+    },
+]
+
+---
+
+<Container>
+    <HeadingThreeFourXlBold>Trusted By</HeadingThreeFourXlBold>
+    <div class="flex flex-wrap gap-6 justify-center items-center py-12">
+        {
+
+            images.map((image)=>{
+
+                return (
+
+                    <div class="h-10 aspect-[4/1]" >
+                        <Picture 
+                            alternative_text={image.image_text} 
+                            source={image.image_source} 
+                        />
+                    </div>
+
+                ) 
+
+            })
+
+        }
+    </div>
+</Container>
