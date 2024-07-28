@@ -1,0 +1,107 @@
+---
+
+// IMPORT ASTRO LAYOUTS
+import Container from "@/layouts/container/index.astro"
+
+// IMPORT JSX COMPONENT
+import Stars from "@/components/home/hero/stars/index.jsx"
+
+// IMPORT ASTRO ATOMS
+import HeadingOne5xlCenter from "@/atoms/atoms-nandini/headings/one/5xl/center/index.astro"
+import Paragraph5xlCenterLime from "@/atoms/atoms-nandini/paragraphs/5xl/center/lime/index.astro"
+import ParagraphSmallCenter from "@/atoms/atoms-nandini/paragraphs/sm/center/index.astro"
+import ParagraphSmallGray from "@/atoms/atoms-nandini/paragraphs/sm/gray/index.astro"
+import ParagraphXsGray from "@/atoms/atoms-nandini/paragraphs/xs/gray/index.astro"
+import PictureInternal from "@/atoms/picture/internal/index.astro"
+import Link from "@/atoms/links/index.astro"
+
+// SEO-SERVICES ARRAY
+const services = [
+
+    {
+        number:"217+",
+        title:"ECOMMERCE BUSINESSES HELPED",
+    },
+    {
+        number:"383%",
+        title:"AVERAGE ROI",
+    },
+    {
+        number:"96%",
+        title:"WORD OF MOUTH BUSINESS",
+    },
+    {
+        number:"11,617+",
+        title:"LINKS ACQUIRED AND COUNTING",
+    }
+
+]
+
+// HARDCODED DATA
+const data = {
+
+    title:"High ROI eCommerce SEO Services",
+    desc1:"REVIEWED ON",
+    desc2:"23 REVIEWS",
+
+}
+
+---
+<section class="relative mt-5 mb-80 sm:mb-32 md:mb-0">
+    <div class="h-96 aspect-auto">
+        <PictureInternal
+            alternative_text="Image"
+            source="/images/hero-bg.png"
+        />
+    </div>
+    <Container>
+        <div class="absolute inset-0 top-5 space-y-10">
+            <HeadingOne5xlCenter>{ data.title }</HeadingOne5xlCenter>
+            <div class="flex gap-2 justify-center">
+                <div class="space-y-1">
+                    <ParagraphXsGray>{ data.desc1 }</ParagraphXsGray>
+                    <div class="w-20 aspect-auto">
+                        <Link aria_label="Image" href="https://clutch.co/profile/180-marketing?utm_source=widget&utm_medium=2&utm_campaign=widget&utm_content=logo&utm_term=www.180marketing.com">
+                            <PictureInternal
+                                alternative_text="Image"
+                                source="/images/clutch.svg"
+                            />
+                        </Link>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <Link aria_label="Image" href="https://clutch.co/profile/180-marketing?utm_source=widget&utm_medium=2&utm_campaign=widget&utm_content=stars&utm_term=www.180marketing.com#reviews">
+                        <div class="flex">
+                            <Stars/>
+                        </div>
+                    </Link>
+                    <Link aria_label="Image" href="https://clutch.co/profile/180-marketing?utm_source=widget&utm_medium=2&utm_campaign=widget&utm_content=stars&utm_term=www.180marketing.com#reviews">
+                        <div class="mt-2">
+                            <ParagraphSmallGray>{ data.desc2 }</ParagraphSmallGray>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            <div class="space-y-10 sm:space-y-0 sm:flex justify-center md:gap-20 lg:gap-32 xl:gap-36">
+                {
+
+                    services.map( ( item ) => {
+
+                        return ( 
+                            
+                                <div class="md:w-34 lg:w-40">
+                                    <Paragraph5xlCenterLime>{ item.number }</Paragraph5xlCenterLime>
+                                    <ParagraphSmallCenter>{ item.title }</ParagraphSmallCenter>
+                                </div>
+                                
+
+                        )
+
+                    })
+
+                }
+                
+            </div>
+        </div>
+    </Container>
+</section>

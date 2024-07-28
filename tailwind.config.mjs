@@ -47,6 +47,7 @@ module.exports = {
 			},
 			colors: {
 
+				"neon-gold":"#FDBD01",
 				"green-light": "#A2CF4F",
 				"green-medium": "#9BCB3B",
 				"green-dark": "#7baa1e",

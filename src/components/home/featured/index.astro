@@ -1,0 +1,80 @@
+---
+
+// IMPORT ASTRO LAYOUTS
+import Container from "@/layouts/container/index.astro"
+
+// IMPORT ASTRO ATOMS
+import HeadingTwo4xlBoldCenter from "@/atoms/atoms-nandini/headings/two/4xl/bold/center/index.astro"
+import Link from "@/atoms/links/index.astro"
+import PictureInternal from "@/atoms/picture/internal/index.astro"
+
+// IMAGES ARRAY
+const image = [
+
+    {
+        alternative_text:"featured-forbes",
+        link:"https://www.forbes.com/sites/groupthink/2013/09/24/6-things-online-retailers-can-learn-from-amazon/",
+        source:"/images/featured-forbes.png",
+    },
+    {
+        alternative_text:"featured-eccomcrew",
+        link:"/e223-an-seo-teardown-of-icewraps-com-with-jeff-oxford/",
+        source:"/images/featured-eccomcrew.png",
+    },
+    {
+        alternative_text:"featured-ecommercefuel",
+        link:"/on-page-seo-factor/",
+        source:"/images/featured-ecommercefuel.png",
+    },
+    {
+        alternative_text:"featured-opencart",
+        link:"/blog?blog_id=85",
+        source:"/images/featured-opencart.png",
+    },
+    {
+        alternative_text:"featured-my-wife",
+        link:"/episode318/",
+        source:"/images/featured-my-wife.png",
+    },
+
+]
+
+const data = {
+
+    title:"As Featured On",
+
+}
+
+---
+
+<section class="my-10">
+    <Container>
+        <div class="space-y-14">
+            <HeadingTwo4xlBoldCenter>{ data.title }</HeadingTwo4xlBoldCenter>
+            <div class="flex flex-wrap gap-10 justify-center">
+                {
+
+                    image.map( ( item ) =>{
+        
+        
+                        return (
+        
+                            <Link aria_label={ item.alternative_text }  href={ item.link }>
+                                <div class="w-44 aspect-auto">
+                                    <PictureInternal 
+                                        alternative_text={ item.alternative_text }
+                                        source={ item.source }
+                                    />
+                                </div>
+                            </Link>
+        
+                        )
+        
+                    })
+        
+                }
+                
+            </div>
+        </div>
+    </Container>
+</section>

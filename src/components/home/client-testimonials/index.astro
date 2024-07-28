@@ -1,0 +1,137 @@
+---
+
+// IMPORT ASTRO LAYOUTS
+import Container from "@/layouts/container/index.astro"
+
+// IMPORT JSX COMPONENT
+import Stars from "@/components/home/client-testimonials/stars/index.jsx"
+
+// IMPORT ASTRO ATOMS
+import HeadingTwo4xlBoldCenter from "@/atoms/atoms-nandini/headings/two/4xl/bold/center/index.astro"
+import HeadingThreeBoldCenter from "@/atoms/atoms-nandini/headings/three/bold/center/index.astro"
+import ParagraphBoldRightLime from "@/atoms/atoms-nandini/paragraphs/bold/right/lime/index.astro"
+import Paragraph2xlThinCenter from "@/atoms/atoms-nandini/paragraphs/2xl/thin/center/index.astro"
+import ParagraphThinCenter from "@/atoms/atoms-nandini/paragraphs/thin/center/index.astro"
+import ParagraphThinCenterLime from "@/atoms/atoms-nandini/paragraphs/thin/center/lime/index.astro"
+import PictureInternal from "@/atoms/picture/internal/index.astro"
+import Link from "@/atoms/links/index.astro"
+
+// CLIENT ARRAY
+const clients = [
+
+    {
+        image_link:"/#",
+        desc1:"Co-founder of",
+        desc2:"BumbleBee Linens",
+        paragraph_link:"/bumblebeelinens.com",
+        source:"/images/client-1.png",
+        title:"Steve Chou",
+    },
+    {
+        image_link:"/#",
+        desc1:"CEO of",
+        desc2:"Saniflo",
+        paragraph_link:"/saniflodepot.com",
+        source:"/images/client-2.png",
+        title:"Walker Deibel",
+    },
+    {
+        image_link:"/#",
+        desc1:"CEO of",
+        desc2:"Intimate Rose",
+        paragraph_link:"/www.intimaterose.com",
+        source:"/images/client-3.png",
+        title:"Aaron Wilt",
+    },
+    {
+        image_link:"/#",
+        desc1:"CEO of",
+        desc2:"Bro Basket",
+        paragraph_link:"/www.thebrobasket.com",
+        source:"/images/client-4.png",
+        title:"Gavin Caganoff",
+    },
+    {
+        image_link:"/#",
+        desc1:"CEO of",
+        desc2:"Trophy Central",
+        paragraph_link:"/www.trophycentral.com",
+        source:"/images/client-5.png",
+        title:"Neil Rader",
+    },
+
+
+]
+
+// HARDCODED DATA
+const data= {
+
+    card_description1:"What a fantastic partner for Search Engine Optimization. 180 Marketing is organized and efficient with time and extremely knowledge about the keys to improving ones rankings.",
+    card_description2:"See all Testimonials",
+    card_link:"/testimonials",
+    card_subtitle:"MARKETING DIRECTOR, BANYAN BOTANICALS",
+    card_title:"Douglas Neal",
+    title:"What Our Clients Are Saying",
+
+}
+
+---
+<section class="my-20">
+    <Container>
+        <div class="space-y-20">
+            <HeadingTwo4xlBoldCenter>{ data.title }</HeadingTwo4xlBoldCenter>
+            <div class="space-y-4 md:space-y-0 md:flex justify-center">
+                {
+
+                    clients.map( ( item ) => {
+
+                        return (
+
+                                <div class="border shadow-2xl pb-7">
+                                    <div class="md:size-32 lg:size-44 xl:size-56 p-4">
+                                        <Link aria_label={ item.title } href={ item.image_link }>
+                                            <PictureInternal
+                                                alternative_text={ item.title }
+                                                source={ item.source }
+                                            />
+                                        </Link>
+                                    </div>
+                                    <HeadingThreeBoldCenter>{ item.title }</HeadingThreeBoldCenter>
+                                    <ParagraphThinCenter>{ item.desc1 }</ParagraphThinCenter>
+                                    <Link aria_label={ item.desc2 } href={ item.paragraph_link }>
+                                        <ParagraphThinCenterLime>{ item.desc2 }</ParagraphThinCenterLime>
+                                    </Link>
+                                </div>
+
+                        )
+
+                    })
+
+                }
+            </div>
+            <div class="flex justify-center sm:mx-10 md:mx-36 lg:mx-52 xl:mx-80 2xl:mx-96">
+                <div class="relative border shadow-2xl pt-8 px-14 space-y-10">
+                    <Paragraph2xlThinCenter>{ data.card_description1 }</Paragraph2xlThinCenter>
+                    <div>
+                        <HeadingThreeBoldCenter>{ data.card_title }</HeadingThreeBoldCenter>
+                        <ParagraphThinCenter>{ data.card_subtitle }</ParagraphThinCenter>
+                        <div class="flex justify-center">
+                            <Stars/>
+                        </div>
+                    </div> 
+                    <div class="pb-8">
+                        <Link aria_label={ data.card_description2 } href={ data.card_link }>
+                            <ParagraphBoldRightLime>{ data.card_description2 }</ParagraphBoldRightLime>
+                        </Link>
+                    </div>
+                    <div class="absolute left-32 sm:left-48 lg:left-56 xl:left-64 2xl:left-80 -bottom-10 insert-0 size-20 sm:mx-auto rounded-full overflow-hidden">
+                        <PictureInternal
+                            alternative_text="Image"
+                            source="/images/douglas-neal.jpg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
