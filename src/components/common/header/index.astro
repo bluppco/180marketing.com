@@ -1,13 +1,95 @@
 ---
 
+// IMPORT ASTRO COLLECTION
+import { getCollection } from "astro:content"
+
+// IMPORT HEADER COLLECTION
+let header_data = await getCollection("header")
+header_data = header_data.filter( item => item.data.live ).sort( ( a, b ) => a.data.order - b.data.order )
+
 // IMPORT ASTRO LAYOUTS
-import Container from "@/layouts/container/index.astro"
+import ContainerSmall from "@/layouts/container-small/index.astro"
+
+// IMPORT ASTRO COMPONENTS
+import HeaderMobile from "@/components/common/header/mobile/index.astro"
+
+// IMPORT ASTRO ATOMS
+import Link from "@/atoms/links/index.astro"
+import PictureContain from "@/atoms/picture/internal/contain/index.astro"
+import PictureFill from "@/atoms/picture/internal/fill/index.astro"
+
+// LOGO
+const logo = {
+
+    link: "/",
+    source: "/logo/180-marketing.png",
+    wave_souce: "/images/green-wave.png",
+
+}
 
 ---
-<header class="bg-blue-400 h-12">
-    <Container>
-        <section class="flex items-center h-full">
-            <p class="text-white">I am header</p>
-        </section>
-    </Container>
+
+<header class="fixed top-0 w-full z-20">
+    <div class="bg-green-light py-6 relative">
+        <ContainerSmall>
+            <nav class="hidden lg:flex justify-between">
+                <Link href={ logo.link }>
+                    <div class="h-16 aspect-[16/5]">
+                        <PictureContain
+                            alternative_text=""
+                            source={ logo.source }
+                        />
+                    </div>
+                </Link>
+                <ul class="flex items-center gap-4">
+                    {
+    
+                        header_data.map( ( item, index ) => {
+    
+                            const isLastItem = index === header_data.length - 1
+    
+                            return (
+    
+                                <li class="text-lg text-white font-semibold font-lato">
+                                    <Link href={ item.data.link }>
+                                        <div class={ isLastItem ? "bg-slate-700 hover:bg-slate-600 rounded-lg duration-300 px-4 py-2" : "hover:bg-green-dark rounded-lg duration-300 px-4 py-2" }>
+                                            <span>{ item.data.title }</span>
+                                        </div>
+                                    </Link>
+                                </li>
+    
+                            )
+    
+                        })
+        
+                    }
+                </ul>
+            </nav>
+            <HeaderMobile header_data={ header_data }/>
+        </ContainerSmall>
+    </div>
+    <div id="wave" class="-z-10 absolute top-6 w-full h-full">
+        <PictureFill
+            alternative_text=""
+            source="/images/green-wave.png"
+        />
+    </div>
 </header>
+
+<script>
+    window.addEventListener('scroll', () => {
+
+        // HIDE WAVE IMAGE WHEN SCROLLING DOWN
+        const wave = document.getElementById('wave')
+        if (window.scrollY > 0) {
+
+            wave.classList.add('hidden')
+
+        } else {
+
+            wave.classList.remove('hidden')
+
+        }
+
+    })
+</script>

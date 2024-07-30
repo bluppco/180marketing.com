@@ -1,0 +1,133 @@
+---
+
+// IMPORT ASTRO LAYOUTS
+import ContainerSmall from "@/layouts/container-small/index.astro"
+
+// IMPORT ASTRO COMPONENTS
+import Form from "@/components/home/contact/form/index.astro"
+
+// IMPORT ASTRO ATOMS
+import HeadingThreeThreeXlLeading from "@/atoms/atoms-shiva/headings/three/three-xl/leading/index.astro"
+import HeadingTwo from "@/atoms/atoms-shiva/headings/two/four-xl/semibold/index.astro"
+import LinkNewWindow from "@/atoms/links/new-window/index.astro"
+import ParagraphSmGray from "@/atoms/atoms-shiva/paragraphs/sm/gray/index.astro"
+import ParagraphXlLight from "@/atoms/atoms-shiva/paragraphs/xl/light/index.astro"
+import ParagraphXlLightGreen from "@/atoms/atoms-shiva/paragraphs/xl/light/green/hover-underline/index.astro"
+import PictureContain from "@/atoms/picture/internal/contain/index.astro"
+
+// HARDCODED DATA
+const data = {
+
+    contactData: [
+
+        { 
+            icon: "/icons/mail.gif", 
+            link: "/", 
+            text: "Jeff@180marketing.com", 
+            type: "email", 
+        },
+        { 
+            icon: "/icons/home.gif", 
+            text: "Bend, Oregon", 
+            type: "address", 
+        },
+        { 
+            icon: "/icons/phone.gif", 
+            link: "/", 
+            text: "(207) 614-6922", 
+            type: "phone", 
+        },
+
+    ],
+    subtitle: "Let's find out how we can increase your revenue through SEO.",
+    title: "Contact",
+
+}
+const review_data = {
+
+    link: "/",
+    reviews: "23 REVIEWS",
+    source: "/logo/clutch.svg",
+    star_source: "/icons/star-rating.png",
+    title: "REVIEWED ON",
+
+}
+
+---
+
+<section class="py-14 bg-lime-50">
+    <ContainerSmall>
+        <div class="flex flex-col gap-20">
+            <div class="flex items-center justify-center">
+                <HeadingTwo>{ data.title }</HeadingTwo>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:px-28">
+                <div class="flex flex-col gap-8">
+                    <HeadingThreeThreeXlLeading>{ data.subtitle }</HeadingThreeThreeXlLeading>
+                    <div class="flex flex-col gap-6">
+                        {
+                        
+                            data.contactData.map( ( item ) => (
+
+                                <div class="flex gap-10">
+                                    <div class="size-6">
+                                        <PictureContain 
+                                            alternative_text="" 
+                                            source={ item.icon } 
+                                        />
+                                    </div>
+                                    <div class="">
+                                        {
+                                        
+                                            item.link ? (
+
+                                                <LinkNewWindow href={ item.link }>
+                                                    <ParagraphXlLightGreen>{ item.text }</ParagraphXlLightGreen>
+                                                </LinkNewWindow>
+
+                                            ) : (
+
+                                                <ParagraphXlLight>{ item.text }</ParagraphXlLight>
+
+                                            )
+                                        
+                                        }
+                                    </div>
+                                </div>
+
+                            ))
+                        
+                        }
+                    </div>
+                    <!-- REVIEW CONTENT -->
+                    <LinkNewWindow href={ review_data.link }>
+                        <div class="flex items-center justify-center">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col justify-center">
+                                    <ParagraphSmGray>{ review_data.title }</ParagraphSmGray>
+                                    <div class="w-24 aspect-[16/7]">
+                                        <PictureContain
+                                            alternative_text=""
+                                            source={ review_data.source }
+                                        />
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="w-24 aspect-[16/6]">
+                                        <PictureContain
+                                            alternative_text=""
+                                            source={ review_data.star_source }
+                                        />
+                                    </div>
+                                    <ParagraphSmGray>{ review_data.reviews }</ParagraphSmGray>
+                                </div>
+                            </div>
+                        </div>
+                    </LinkNewWindow>
+                </div>
+                <!-- CONTACT FORM -->
+                <Form/>
+            </div>
+        </div>
+    </ContainerSmall>
+</section>
