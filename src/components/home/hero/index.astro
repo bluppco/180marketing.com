@@ -48,7 +48,7 @@ const data = {
 
 ---
 <section class="relative mt-5 mb-80 sm:mb-32 md:mb-0">
-    <div class="h-96 aspect-auto">
+    <div class="h-96 aspect-auto overflow-hidden">
         <PictureInternal
             alternative_text="Image"
             source="/images/hero-bg.png"
@@ -60,7 +60,7 @@ const data = {
             <div class="flex gap-2 justify-center">
                 <div class="space-y-1">
                     <ParagraphXsGray>{ data.desc1 }</ParagraphXsGray>
-                    <div class="w-20 aspect-auto">
+                    <div class="w-20 aspect-[9/2.5]">
                         <Link aria_label="Image" href="https://clutch.co/profile/180-marketing?utm_source=widget&utm_medium=2&utm_campaign=widget&utm_content=logo&utm_term=www.180marketing.com">
                             <PictureInternal
                                 alternative_text="Image"
@@ -89,7 +89,7 @@ const data = {
 
                         return ( 
                             
-                                <div class="md:w-34 lg:w-40">
+                                <div>
                                     <Paragraph5xlCenterLime>{ item.number }</Paragraph5xlCenterLime>
                                     <ParagraphSmallCenter>{ item.title }</ParagraphSmallCenter>
                                 </div>
