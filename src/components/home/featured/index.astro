@@ -61,7 +61,7 @@ const data = {
                                 return (
 
                                         <Link aria_label={ item.alternative_text }  href={ item.link }>
-                                            <div class="w-32 aspect-[5/1.3] object-cover">
+                                            <div class="w-32 aspect-[4/1]">
                                                 <PictureInternal 
                                                     alternative_text={ item.alternative_text }
                                                     source={ item.source }
@@ -73,12 +73,12 @@ const data = {
 
                             } 
                             
-                            if( index == 4){
+                            else if( index == 4){
 
                                 return (
 
                                         <Link aria_label={ item.alternative_text }  href={ item.link }>
-                                            <div class="w-32 aspect-[3/1.5] object-cover">
+                                            <div class="w-32 aspect-[2/1]">
                                                 <PictureInternal 
                                                     alternative_text={ item.alternative_text }
                                                     source={ item.source }
@@ -95,7 +95,7 @@ const data = {
                                 return ( 
 
                                         <Link aria_label={ item.alternative_text }  href={ item.link }>
-                                            <div class="w-32 aspect-[6/1] object-cover">
+                                            <div class="w-32 aspect-[6/1]">
                                                 <PictureInternal 
                                                     alternative_text={ item.alternative_text }
                                                     source={ item.source }
