@@ -54,27 +54,67 @@ const data = {
             <div class="flex flex-wrap gap-10 justify-center">
                 {
 
-                    image.map( ( item ) =>{
-        
-        
-                        return (
-        
-                            <Link aria_label={ item.alternative_text }  href={ item.link }>
-                                <div class="w-44 aspect-auto">
-                                    <PictureInternal 
-                                        alternative_text={ item.alternative_text }
-                                        source={ item.source }
-                                    />
-                                </div>
-                            </Link>
-        
-                        )
-        
+                    image.map( ( item ,index ) =>{
+
+                            if( index == 0){
+
+                                return (
+
+                                        <Link aria_label={ item.alternative_text }  href={ item.link }>
+                                            <div class="w-32 aspect-[4/1]">
+                                                <PictureInternal 
+                                                    alternative_text={ item.alternative_text }
+                                                    source={ item.source }
+                                                />
+                                            </div>
+                                        </Link>
+
+                                )
+
+                            } 
+                            
+                            else if( index == 4){
+
+                                return (
+
+                                        <Link aria_label={ item.alternative_text }  href={ item.link }>
+                                            <div class="w-32 aspect-[2/1]">
+                                                <PictureInternal 
+                                                    alternative_text={ item.alternative_text }
+                                                    source={ item.source }
+                                                />
+                                            </div>
+                                        </Link>
+
+                                )
+
+                            }
+
+                            else {
+
+                                return ( 
+
+                                        <Link aria_label={ item.alternative_text }  href={ item.link }>
+                                            <div class="w-32 aspect-[6/1]">
+                                                <PictureInternal 
+                                                    alternative_text={ item.alternative_text }
+                                                    source={ item.source }
+                                                />
+                                            </div>
+                                        </Link>
+
+                                )
+
+                            }
+
                     })
         
                 }
-                
             </div>
         </div>
     </Container>
 </section>
+
+
+<!-- apply index property in map and add height and width for 
+different images -->
